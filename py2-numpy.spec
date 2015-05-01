@@ -6,7 +6,6 @@ Source: http://downloads.sourceforge.net/project/numpy/NumPy/%{realversion}/nump
 
 Requires: python
 Requires: zlib
-Requires: atlas
 Requires: lapack
 %prep
 %setup -n numpy-%{realversion}
@@ -22,6 +21,6 @@ export LAPACK_ROOT
 export LAPACK=$LAPACK_ROOT/lib/liblapack.$SONAME
 export BLAS=$LAPACK_ROOT/lib/libblas.$SONAME
 
-python setup.py build --fcompiler=gnu95
+ATLAS=None python setup.py build --fcompiler=gnu95
 python setup.py install --prefix=%{i}
 find %{i} -name '*.egg-info' -exec rm {} \;
