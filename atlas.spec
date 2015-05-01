@@ -1,7 +1,7 @@
 ### RPM external atlas 3.6.0
 # NB: http://www.netlib.org/atlas/atlas-comm/msg00280.html
 #     http://cvs.pld-linux.org/cgi-bin/cvsweb/SPECS/atlas.spec
-Source: http://switch.dl.sourceforge.net/sourceforge/math-atlas/%n%v.tar.bz2
+Source: http://sourceforge.net/projects/math-atlas/files/Stable/%v/%n%v.tar.bz2
 Requires: lapack
 
 %prep
@@ -29,7 +29,7 @@ makesolib() {
 
 case %cmsplatf in
   *ia32*  ) machtype=8;; # Pentium 4
-  *amd64* ) machtype=4;; # 64 bit AMD Hammer
+  *amd64* ) machtype=3;; # 64 bit AMD Hammer
   *       ) machtype=1;; # Unknown
 esac
 
@@ -48,12 +48,14 @@ cat > config.expect <<EOF
    -nocase -re {Enter machine number \[.*\]: }   {send "$machtype\n"}
    -nocase {Are you using a cross-compiler\?}    {send "n\n"}
    -nocase {enable Posix threads support\?}      {send "y\n"}
+   -nocase {Stop ATLAS install\?}                {send "n\n"}
    -nocase {use express setup\?}                 {send "y\n"}
    -nocase -re {Enter Architecture name \(ARCH\) \[.*\]} { send "%{cmsplatf}\n" }
    -nocase {Enter Maximum cache size}            { send "\n" }
    -nocase {Enter File creation delay in seconds} {send "0\n"}
    -nocase {Enter Top level ATLAS directory}     {send "\n"}
    -nocase {Enter Directory to build libraries in} {send "\n"}
+   -nocase {Enter 1 to enter a different F77, 0 to continue with none} {send "0\n"}
    -nocase {Enter f77 compiler}                  {send "\n"}
    -nocase {Enter F77 Flags}                     {send "\n"}
    -nocase {Enter F77 linker}                    {send "\n"}
