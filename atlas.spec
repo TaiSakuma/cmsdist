@@ -10,7 +10,7 @@ Source: http://sourceforge.net/projects/math-atlas/files/Stable/%{realversion}/a
 curl -L -O http://www.netlib.org/lapack/lapack-3.3.1.tgz
 mkdir BUILD
 cd BUILD
-../configure -b 64 --prefix=%{i} --with-netlib-lapack-tarfile=../lapack-3.3.1.tgz
+../configure -b 64 --prefix=%{i} --with-netlib-lapack-tarfile=../lapack-3.3.1.tgz --shared
 make build
 make check
 make ptcheck
