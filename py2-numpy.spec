@@ -14,9 +14,9 @@ case %{cmsos} in
   *) SONAME=so ;;
 esac
 
-export ATLAS=$ATLAS_ROOT/lib/libtatlas.$SONAME
-export BLAS=$ATLAS_ROOT/lib/libtatlas.$SONAME
-export LAPACK=$ATLAS_ROOT/lib/libtatlas.$SONAME
+export ATLAS=$ATLAS_ROOT/lib/libatlas.$SONAME
+export BLAS=$ATLAS_ROOT/lib/libptf77blas.$SONAME
+export LAPACK=$ATLAS_ROOT/lib/libptlapack.$SONAME
 
 python setup.py build --fcompiler=gnu95
 python setup.py install --prefix=%{i}
