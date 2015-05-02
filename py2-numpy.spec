@@ -14,9 +14,12 @@ case %{cmsos} in
   *) SONAME=so ;;
 esac
 
-export ATLAS=$ATLAS_ROOT/lib/libatlas.$SONAME
-export BLAS=$ATLAS_ROOT/lib/libptf77blas.$SONAME
-export LAPACK=$ATLAS_ROOT/lib/libptlapack.$SONAME
+cat > site.cfg <<EOF
+[atlas]
+libraries = lapack,f77blas,cblas,atlas
+include_dirs = $ATLAS_ROOT/include
+library_dirs = $ATLAS_ROOT/lib
+EOF
 
 python setup.py build --fcompiler=gnu95
 python setup.py install --prefix=%{i}
